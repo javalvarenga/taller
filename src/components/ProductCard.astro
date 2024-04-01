@@ -1,0 +1,73 @@
+---
+import Icon from "astro-icon";
+import EditProduct from "./Modals/EditProduct.astro";
+import DeleteProduct from "./Modals/DeleteProduct.astro";
+
+
+const { productId, description, price, stock,image } = Astro.props;
+---
+
+<card class="ProductCard">
+  <img src={image} height="200px" alt="imagen">
+  <div class="card-content">
+    <h5>{description}</h5>
+    <span>{price}</span>
+    <p>{`Existencias: ${stock}`}</p>
+  </div>
+  <div class="card-buttons">
+    <EditProduct {...Astro.props} />
+    <button id={`modal-edit-product-${productId}`} class="editButton" >
+      <Icon name="ic:baseline-edit" />
+    </button>
+    <DeleteProduct {...Astro.props} />
+    <button id={`modal-delete-product-${productId}`} class="closeButton" >
+      <Icon name="ic:outline-remove-circle-outline" />
+    </button>
+
+  </div>
+</card>
+
+<style lang="scss">
+  @use "../assets/scss/base/breakpoint" as *;
+
+  .ProductCard {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 300px;
+    padding: 3rem 1.6rem;
+    box-shadow: 3px 2px 10px gainsboro;
+  }
+
+  .card-content{
+    width: 100%;
+    margin-top: 0.6rem;
+  }
+
+  body.darkmode .ProductCard{
+    box-shadow: 3px 2px 15px rgb(46, 46, 46);
+  }
+
+  .card-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    & button {
+      border: none;
+      padding: 0.3rem;
+    }
+  }
+
+  .closeButton svg {
+    width: 25px;
+    color: rgb(255, 40, 40);
+  }
+
+  .editButton svg {
+    width: 25px;
+    color: rgb(255, 150, 0);
+  }
+
+
+</style>

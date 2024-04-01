@@ -1,0 +1,18 @@
+---
+import Input from "../Input.astro";
+import { Modal } from "accessible-astro-components";
+
+const {productId,description,price,stock} = Astro.props;
+---
+
+<Modal triggerId={`modal-edit-product-${productId}`} title="Editar Producto" closeText="Cancelar">
+  <form class="modal-form">
+    <Input id="1" label="Descipción" value={description} />
+    <Input id="2" type="number" label="Precio" value={price} />
+    <Input id="3" type="number" label="Existencias" value={stock} />
+    <Input id="4" type="file" label="Imagen" />
+    <button class="button color-secondary margin-16">Editar</button>
+  </form>
+</Modal>
+
+

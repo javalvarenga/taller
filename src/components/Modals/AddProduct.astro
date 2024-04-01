@@ -1,0 +1,17 @@
+---
+import Input from "../Input.astro";
+import { Modal } from "accessible-astro-components";
+---
+
+<button id="modal-trigger" class="button color-secondary"
+  >Agregar Repuesto</button
+>
+<Modal triggerId="modal-trigger" title="Agregar Repuesto" closeText="Cancelar">
+  <form class="modal-form">
+    <Input id="1" label="Descipción" />
+    <Input id="2" type="number" label="Precio" />
+    <Input id="3" type="number" label="Existencias" />
+    <Input type="file" label="Imagen" />
+    <button class="button color-secondary margin-16">Guardar</button>
+  </form>
+</Modal>

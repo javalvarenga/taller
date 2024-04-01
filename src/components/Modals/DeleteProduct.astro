@@ -1,0 +1,36 @@
+---
+import Input from "../Input.astro";
+import { Modal } from "accessible-astro-components";
+
+const {productId,description,price,stock} = Astro.props;
+---
+
+<Modal triggerId={`modal-delete-product-${productId}`} title="Eliminar Producto" closeText="Cancelar">
+  <form class="modal-form">
+    <p style="text-align: center;">¿Eliminar Producto {productId} - {description}?</p>
+    <button class="button margin-16">Eliminar</button>
+  </form>
+</Modal>
+
+
+<style lang="scss" >
+
+.button{
+  background-color: rgb(185, 25, 25);
+  opacity: 0.8;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+.button:hover{
+  background-color: rgb(223, 13, 13);
+  color: white;
+  opacity: 1;
+  outline: none;
+  border: none;
+}
+
+</style>
+
+

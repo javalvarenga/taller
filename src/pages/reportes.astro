@@ -1,0 +1,124 @@
+---
+import Icon from "astro-icon";
+import IndicatorCard from "../components/IndicatorCard.astro";
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+const sales = [
+  {
+    saleId: 1,
+    customerName: "Manuel Contreras",
+    sellerName: "Kevin Garcia",
+    total: 300,
+  },
+  {
+    saleId: 2,
+    customerName: "Javier Hernandez",
+    sellerName: "Kevin Garcia",
+    total: 240,
+  },
+  {
+    saleId: 3,
+    customerName: "Diego Gonzales",
+    sellerName: "Gilmar Jiménez",
+    total: 480,
+  },
+  {
+    saleId: 4,
+    customerName: "Emilio Serrano",
+    sellerName: "Kevin Garcia",
+    total: 150,
+  },
+];
+---
+
+<DefaultLayout title="Media">
+  <section>
+    <h1>Reportes</h1><br />
+    <div class="indicators">
+      <IndicatorCard title="Ventas" number="4" />
+      <IndicatorCard title="Total" number="Q1,170.00" />
+    </div>
+  </section>
+  <section class="margin-16">
+    <div class="space-content">
+      <div class="contents">
+        <h2>Reporte de Ventas</h2>
+      </div>
+    </div>
+    <div class="user-list">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Vendedor</th>
+            <th>Factura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            sales.map((user) => (
+              <tr>
+                <td>{user.customerName}</td>
+                <td>{user.total}</td>
+                <td>{user.sellerName}</td>
+                <td>
+                  <Icon name="ic:outline-receipt-long" height="20px" />
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  .user-list {
+    margin-top: 20px;
+    overflow-x: auto; /* Agregar barra de desplazamiento horizontal si es necesario */
+    text-align: left;
+  }
+
+  .user-table {
+    width: 100%;
+  }
+
+  .user-table thead {
+    color: white;
+    background-color: var(--secondary-200);
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .user-table th {
+    font-weight: bold;
+  }
+
+  .user-table tr:hover {
+    background-color: gray;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 20px; /* Espacio entre los radios */
+  }
+
+  label {
+    display: flex;
+    align-items: center; /* Centrar verticalmente el contenido del label */
+  }
+
+  .indicators {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    place-content: center;
+    gap: 3rem;
+  }
+</style>

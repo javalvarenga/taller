@@ -1,0 +1,114 @@
+---
+import Icon from "astro-icon";
+import Input from "../Input.astro";
+import { Modal } from "accessible-astro-components";
+
+const saleDetails = [
+  {
+    description: "aceite de freno",
+    quantity: 1,
+    price: 280,
+  },
+];
+---
+
+<button id="modal-new-sale" class="button color-secondary">Editar Venta</button>
+<Modal triggerId="modal-new-sale" title="Editar Venta" closeText="Cancelar">
+  <form class="modal-form">
+    <Input id="2" type="text" label="Cliente" />
+    <Input id="2" type="text" label="NIT" />
+    <Input id="3" type="number" label="Total" />
+    <div class="invoice-details">
+      <div class="buttons">
+        <button class="addIcon margin-4">
+          <Icon name="ic:round-plus" height="20px" fill="fff" />
+        </button>
+
+        <button class="deleteIcon margin-4">
+          <Icon name="ic:round-delete" height="20px" fill="fff" />
+        </button>
+      </div>
+      <div class="details-list">
+        <table class="details-table">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              saleDetails.map((user) => (
+                <tr>
+                  <td>{user?.description}</td>
+                  <td>{user?.quantity}</td>
+                  <td>Q {user?.price}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button class="button color-secondary margin-16">Guardar</button>
+  </form>
+</Modal>
+
+<style lang="scss">
+  .invoice-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .invoice-details .buttons {
+    display: flex;
+    align-self: flex-end;
+
+    & button{
+      width: 30px;
+    height: 30px;
+    padding: 0.3rem;
+    border: none;
+    color: white;
+    margin-left:0.6rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    }
+  }
+
+  .details-table {
+    width: 100%;
+  }
+
+  .details-table thead {
+    color: white;
+    background-color: var(--secondary-200);
+  }
+
+  .details-table th,
+  .details-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .details-table th {
+    font-weight: bold;
+  }
+
+  .details-table tr:hover {
+    background-color: gray;
+  }
+
+  .addIcon {
+    background-color: rgb(23, 155, 41);
+  }
+
+  .deleteIcon {
+    background-color: rgb(233, 71, 71);
+  }
+</style>

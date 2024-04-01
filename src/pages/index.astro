@@ -5,25 +5,20 @@ import DashboardWidget from '../components/DashboardWidget.astro';
 
 <DefaultLayout title="Dashboard">
   <section>
-    <h1>Welcome Astronaut 🧑‍🚀</h1><br>
-    <p class="size-20">Build fast dashboards, faster (and accessible).</p>
+    <h1>Multiservicios Mendez</h1><br>
+    <p class="size-20">Dashboard 🔥</p>
   </section>
-  <section class="margin-32">
+  <section class="margin-16">
     <div class="space-content">
       <div class="contents">
-        <h2>Widgets</h2>
+        <h2>Resumen</h2>
         <p id="current-time" class="size-12"></p>
       </div>
       <div class="grid small-grid-1 medium-grid-2 large-grid-3 equal-height">
-        <DashboardWidget />
+        <DashboardWidget title="Repuestos" number={3} />
         <DashboardWidget
-          number="+33"
-          title="Products sold"
-        />
-        <DashboardWidget
-          number="-120"
-          title="Images deleted"
-          type="error"
+          number={3}
+          title="Ventas"
         />
         <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
         <div class="radius-large space-96" style="border: 4px dashed grey;"></div>

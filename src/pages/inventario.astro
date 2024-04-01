@@ -1,0 +1,70 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import EmpyState from '../components/EmpyState.astro'
+import { Modal } from 'accessible-astro-components'
+import ProductCard from '../components/ProductCard.astro'
+import AddProduct from '../components/Modals/AddProduct.astro'
+
+import Input from '../components/Input.astro';
+
+const products = [
+  {
+    productId: 1,
+    description: "Set de amortiguadores",
+    price: 180,
+    stock:3,
+    image:'https://cattleya-storage.s3.us-east-2.amazonaws.com/taller/amortiguador.jpg'
+  },
+  {
+    productId: 2,
+    description: "Candelas",
+    price: 220,
+    stock:2,
+    image:'https://cattleya-storage.s3.us-east-2.amazonaws.com/taller/candelas.jpg'
+  },
+  {
+    productId: 3,
+    description: "Manguera",
+    price: 250,
+    stock:4,
+    image:'https://cattleya-storage.s3.us-east-2.amazonaws.com/taller/mangueraDeMotor.jpg'
+  },
+];
+
+---
+
+<DefaultLayout title="Repuestos">
+  <section>
+    <h1>Repuestos</h1><br>
+  </section>
+  <section class="margin-16">
+    <div class="space-content">
+      <h2>Todos los repuestos</h2>
+      <AddProduct />
+    </div>
+    <div class="inventory-list__container">
+      {
+        products.map((sale) => {
+          return <ProductCard {...sale} />
+        })
+      }
+    </div>
+  </section>
+</DefaultLayout>
+
+
+<style lang="scss">
+
+  .inventory-list__container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,300px);
+    gap: 1rem;
+    margin-top: 1.6rem;
+  }
+  
+
+  .modal-form{
+    width: 100%;
+  }
+  
+  </style>

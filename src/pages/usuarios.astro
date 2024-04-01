@@ -1,0 +1,123 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import EmpyState from "../components/EmpyState.astro";
+import { Modal } from "accessible-astro-components";
+import Input from "../components/Input.astro";
+
+const {} = Astro.props;
+
+const users = [
+  {
+    name: "Kevin Garcia",
+    rol: "Administrador",
+    age: 31,
+  },
+  {
+    name: "Leo Dan",
+    rol: "Administrador",
+    age: 27,
+  },
+  {
+    name: "Daniel Martinez",
+    rol: "Vendedor",
+    age: 20,
+  },
+];
+---
+
+<DefaultLayout title="Users">
+  <section>
+    <h1>Usuarios</h1><br />
+  </section>
+  <section class="margin-16">
+    <div class="space-content">
+      <h2>Lista de Usuarios</h2>
+      <button id="modal-trigger" class="button color-secondary"
+        >Crear Usuario</button
+      >
+      <Modal triggerId="modal-trigger" title="Add user" closeText="Cancelar">
+        <Input id="1" label="Nombre" />
+        <Input id="2" type="number" label="Edad" />
+
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="role" value="true" checked />
+            Administrador
+          </label>
+          <label>
+            <input type="radio" name="role" value="false" />
+            Vendedor
+          </label>
+        </div>
+      </Modal>
+    </div>
+
+    <div class="user-list">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Edad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            users.map((user) => (
+              <tr>
+                <td>{user.name}</td>
+                <td>{user.rol}</td>
+                <td>{user.age}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  @use "../assets/scss/base/breakpoint" as *;
+  @use "../assets/scss/base/outline" as *;
+
+  .user-list {
+    margin-top: 20px;
+    overflow-x: auto; /* Agregar barra de desplazamiento horizontal si es necesario */
+    text-align: left;
+  }
+
+  .user-table {
+    width: 100%;
+  }
+
+  .user-table thead {
+    color: white;
+    background-color: var(--secondary-200);
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid gainsboro;
+  }
+
+  .user-table th {
+    font-weight: bold;
+  }
+
+  .user-table tr:hover {
+    background-color: gray;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 20px; /* Espacio entre los radios */
+  }
+
+  label {
+    display: flex;
+    align-items: center; /* Centrar verticalmente el contenido del label */
+  }
+</style>

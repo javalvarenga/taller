@@ -1,0 +1,63 @@
+---
+import Icon from "astro-icon";
+
+const { saleId, customerName, total = "Q0.00", sellerName } = Astro.props;
+---
+
+<card class="SaleCard">
+  <h5>{customerName}</h5>
+  <p>Vendedor: {sellerName}</p>
+  <span>Tota: Q{total}</span>
+  <div class="card-buttons">
+    <button class="invoiceButton">
+      <Icon name="ic:outline-receipt-long" />
+    </button>
+    <button class="editButton">
+      <Icon name="ic:baseline-edit" />
+    </button>
+    <button class="closeButton">
+      <Icon name="ic:outline-remove-circle-outline" />
+    </button>
+  </div>
+</card>
+
+<style lang="scss">
+  @use "../assets/scss/base/breakpoint" as *;
+
+  .SaleCard {
+    position: relative;
+    width: 300px;
+    padding: 3rem 1.6rem;
+    box-shadow: 3px 2px 10px gainsboro;
+  }
+
+  body.darkmode .SaleCard {
+    box-shadow: 3px 2px 15px rgb(46, 46, 46);
+  }
+
+  .card-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    & button {
+      border: none;
+      padding: 0.3rem;
+    }
+  }
+
+  .closeButton svg {
+    width: 25px;
+    color: rgb(255, 40, 40);
+  }
+
+  .editButton svg {
+    width: 25px;
+    color: rgb(255, 150, 0);
+  }
+
+  .invoiceButton svg{
+    width: 25px;
+    color: rgb(35, 214, 238);
+  }
+</style>

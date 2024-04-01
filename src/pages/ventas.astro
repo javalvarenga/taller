@@ -1,0 +1,55 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import EmpyState from "../components/EmpyState.astro";
+import { Modal } from "accessible-astro-components";
+import SaleCard from "../components/SaleCard.astro";
+import AddSale from "../components/Modals/AddSale.astro";
+
+const sales = [
+  {
+    saleId: 1,
+    customerName: "Daniel Gonzáles",
+    sellerName: 'Kevin Mazapan',
+    total: 300,
+  },
+  {
+    saleId: 2,
+    customerName: "Jose Perez",
+    sellerName: 'Manuel Jiménez',
+    total: 300,
+  },
+];
+---
+
+<DefaultLayout title="Ventas">
+  <section>
+    <h1>Ventas</h1><br />
+    <p class="size-20">Todas las Ventas</p>
+  </section>
+  <section class="margin-16">
+    <div class="space-content">
+      <AddSale />
+    
+    </div>
+    <div class="sales-list__container">
+      {
+        sales.map((sale) => {
+          return <SaleCard {...sale} />
+        })
+      }
+    </div>
+  </section>
+</DefaultLayout>
+
+
+<style lang="scss">
+
+.sales-list__container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,300px);
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+
+</style>
